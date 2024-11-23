@@ -1,0 +1,97 @@
+/* insert.css */
+
+body {
+    margin: 0;
+    font-family: "楷体", serif;
+    background: linear-gradient(135deg, #1d1f21, #3d3f42);
+    color: #f8f8f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#container {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    padding: 20px 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+#container h1 {
+    font-size: 24px;
+    color: #50fa7b;
+    text-shadow: 0 0 8px #50fa7b, 0 0 12px #50fa7b;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 16px;
+    color: #bd93f9;
+    margin: 10px 0 5px;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #6272a4;
+    border-radius: 6px;
+    background-color: #282a36;
+    color: #f8f8f2;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus {
+    border-color: #50fa7b;
+    box-shadow: 0 0 8px rgba(80, 250, 123, 0.8);
+}
+
+input[type="radio"] {
+    margin: 0 10px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #282a36;
+    background-color: #50fa7b;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #3bd47b;
+    box-shadow: 0 0 12px rgba(80, 250, 123, 0.8), 0 0 24px rgba(80, 250, 123, 0.6);
+}
+
+button:active {
+    background-color: #2fa66d;
+}
+
+#nickName,
+#phone,
+#password,
+#birthday {
+    margin-bottom: 15px;
+}
+
+input[type="radio"] + label {
+    margin-left: -20px;
+    margin-right: 10px;
+}
+

@@ -1,0 +1,149 @@
+/* 全局设置 */
+body {
+    font-family: "楷体", serif;
+    background-color: #0f172a; /* 深蓝背景 */
+    color: #e2e8f0; /* 浅色字体 */
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #1e293b; /* 容器蓝灰背景 */
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* 提升立体感 */
+}
+
+/* 标题样式 */
+#textTitle {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #38bdf8; /* 蓝色标题 */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* 查询区域按钮和输入框样式 */
+#btnTitle {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#btnTitle label {
+    font-size: 14px;
+}
+
+#btnTitle input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #38bdf8;
+    border-radius: 5px;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    outline: none;
+}
+
+#btnTitle input[type="button"] {
+    padding: 8px 15px;
+    background-color: #34d399; /* 绿色按钮 */
+    color: #0f172a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btnTitle input[type="button"]:hover {
+    background-color: #059669; /* 悬停深绿色 */
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #1e293b;
+}
+
+thead th {
+    text-align: left;
+    background-color: #334155; /* 表头蓝灰背景 */
+    color: #e2e8f0;
+    padding: 10px;
+    border-bottom: 2px solid #38bdf8; /* 蓝色下划线 */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #273449; /* 偶数行深蓝灰 */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #1e293b; /* 奇数行蓝灰 */
+}
+
+tbody td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #3b4758;
+}
+
+tfoot {
+    margin-top: 10px;
+    text-align: center;
+    background-color: #334155;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+tfoot button {
+
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: #38bdf8; /* 蓝色按钮 */
+    color: #0f172a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+tfoot button:hover {
+    background-color: #0284c7; /* 深蓝悬停 */
+}
+
+tfoot input[type="text"] {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #38bdf8;
+    border-radius: 5px;
+    background-color: #1e293b;
+    color: #e2e8f0;
+}
+
+/* 操作按钮样式 */
+tbody td button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: #34d399; /* 绿色操作按钮 */
+    color: #0f172a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+tbody td button:hover {
+    background-color: #059669; /* 按钮悬停 */
+}
+
+/* 全选复选框 */
+#playerCheckbox {
+    cursor: pointer;
+}
