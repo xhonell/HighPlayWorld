@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
-    <title>高玩世界</title>
+    <title>Advanced Player World</title>
     <script src="../js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 <div id="container">
-    <h1 id="textTitle">玩家列表</h1>
+    <h1 id="textTitle">Player List</h1>
     <div id="btnTitle">
-        <label for="playerId">玩家编号</label>
+        <label for="playerId">Player ID</label>
         <input type="text" name="playerId" id="playerId">
-        <label for="playerName">玩家昵称</label>
+        <label for="playerName">Player Nickname</label>
         <input type="text" name="playerName" id="playerName">
-        <label for="playerPhone">玩家手机</label>
+        <label for="playerPhone">Player Phone</label>
         <input type="text" name="playerPhone" id="playerPhone">
-        <input type="button" value="查询" id="selectPlayer">
-        <input type="button" value="添加" id="insertPlayer">
-        <input type="button" value="退出登录" id="loginOut">
+        <input type="button" value="Search" id="selectPlayer">
+        <input type="button" value="Add" id="insertPlayer">
+        <input type="button" value="Logout" id="loginOut">
     </div>
     <div>
         <table id="playerTable">
@@ -28,22 +28,22 @@
                     <input type="checkbox" id="playerCheckbox"/>
                 </th>
                 <th>
-                    <label>玩家编号</label>
+                    <label>Player ID</label>
                 </th>
                 <th>
-                    <label>玩家昵称</label>
+                    <label>Player Nickname</label>
                 </th>
                 <th>
-                    <label>玩家手机</label>
+                    <label>Player Phone</label>
                 </th>
                 <th>
-                    <label>玩家性别</label>
+                    <label>Player Gender</label>
                 </th>
                 <th>
-                    <label>玩家生日</label>
+                    <label>Player Birthday</label>
                 </th>
                 <th>
-                    <label>操作</label>
+                    <label>Actions</label>
                 </th>
             </tr>
             </thead>
@@ -51,9 +51,9 @@
 
             </tbody>
             <tfoot id="playerTableFoot">
-                <button id="lastPage">上一页</button>
-                <input type="text" name="pageNumber" id="pageNumber" value="1" readonly>
-                <button id="afterPage">下一页</button>
+            <button id="lastPage">Previous Page</button>
+            <input type="text" name="pageNumber" id="pageNumber" value="1" readonly>
+            <button id="afterPage">Next Page</button>
             </tfoot>
         </table>
     </div>
