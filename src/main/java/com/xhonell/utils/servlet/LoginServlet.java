@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.xhonell.utils.utils.MD5Utils.md5;
+
 /**
  * <p>Project:test_01 - LoginServlet
  * <p>POWER by xhonell on 2024-11-22 17:00
@@ -51,6 +53,7 @@ public class LoginServlet extends HttpServlet {
     public void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String playerName = req.getParameter("name");
         String playPassword = req.getParameter("password");
+        playPassword = md5(playPassword);
         Object[] obj = {playerName, playPassword};
         PlayerService playerService = new PlayerService();
         Player player = playerService.login(obj);

@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static com.xhonell.utils.utils.MD5Utils.md5;
+
 /**
  * <p>Project:test_01 - IndexServlet
  * <p>POWER by xhonell on 2024-11-23 10:08
@@ -61,8 +63,9 @@ public class IndexServlet extends HttpServlet {
     private void insertPlayer(HttpServletRequest req, HttpServletResponse resp) {
         String name = req.getParameter("nickName");
         String password = req.getParameter("password");
+        password = md5(password);
         String sex = req.getParameter("sex");
-        Integer phone = Integer.parseInt(req.getParameter("phone"));
+        Long phone = Long.parseLong(req.getParameter("phone"));
         Date birthday = MyFormatUtils.toDate(req.getParameter("birthday"));
         Object[] obj={name,password,sex,phone,birthday};
         boolean b = indexService.insertPlayer(obj);

@@ -2,7 +2,6 @@ $(function(){
     $("#insertBtn").on("click", function(){
         let nickName = $("#nickName").val();
         let sex = $("input[name='sex']:checked").val();
-        console.log(sex)
         let phone = $("#phone").val();
         let password = $("#password").val();
         let birthday = $("#birthday").val();
