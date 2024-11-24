@@ -3,12 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
     <title>Advanced Player World</title>
-    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/validate.js"></script>
     <link rel="stylesheet" href="../css/insert.css">
 </head>
 <body>
 <div id="container">
     <h1>New User Registration</h1>
+    <form >
     <label for="nickName">Player Nickname</label>
     <input type="text" name="nickName" id="nickName"><br>
     <label>Player Gender</label>
@@ -22,7 +24,9 @@
     <input type="password" name="rePassword" id="rePassword"><br>
     <label for="birthday">Player Birthday</label>
     <input type="date" name="birthday" id="birthday"><br>
+    </form>
     <button id="insertBtn">Register</button>
+
 </div>
 </body>
 <script src="../js/insert.js"></script>
