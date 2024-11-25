@@ -14,6 +14,9 @@ $(function() {
             },
             success: function(response) {
                 if (response.code === 200) {
+                    let data = response.data
+                    var loginData = JSON.stringify(data);
+                    window.localStorage.setItem("user", loginData);
                     location.href = "../page/index.html";  // 登录成功跳转
                 } else {
                     alert(response.msg);  // 错误消息

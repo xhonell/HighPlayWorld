@@ -57,10 +57,9 @@ public class LoginServlet extends HttpServlet {
         Object[] obj = {playerName, playPassword};
         PlayerService playerService = new PlayerService();
         Player player = playerService.login(obj);
-        System.out.println(player);
         if (player != null){
             req.getSession().setAttribute("player", player);
-            Write.writeSuccess(resp);
+            Write.writeSuccess(resp,player);
         }else{
             Write.writeFail(resp);
         }

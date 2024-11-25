@@ -93,7 +93,14 @@ tbody td {
     text-align: center;
     border-bottom: 1px solid #3b4758;
 }
-
+#photoHead{
+    float: left;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    overflow: hidden;
+}
 tfoot {
     margin-top: 10px;
     text-align: center;

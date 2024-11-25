@@ -1,4 +1,6 @@
 $(function() {
+    let loginData = window.localStorage.getItem("user");
+    loginData = JSON.parse(loginData);
     let data ;
     let pageNumber = $("#pageNumber").val();
     console.log(pageNumber);
@@ -17,6 +19,8 @@ $(function() {
         })
     })
     window.onload=function(){
+        console.log(loginData);
+
         $.ajax({
             url:"/servlet/index?method=selectAll",
             method: "GET",
@@ -27,6 +31,12 @@ $(function() {
                 console.log(response.data);
                 if (response.code === 200){
                     data = response.data;
+                    data.forEach(item => {
+                        if (item.player_id === loginData.player_id){
+                            loginData = item;
+                        }
+                    })
+                    $("#photoHead").prop("src",loginData.player_img)
                     show(data);
                 }
             }

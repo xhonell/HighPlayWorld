@@ -21,6 +21,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Player {
+    private String player_img;
     private Integer player_id;
     private String player_nickName;
     private String player_password;

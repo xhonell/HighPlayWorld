@@ -18,22 +18,20 @@ $(function(){
                     $("[name='sex'][value='" + data.player_sex + "']").prop("checked", true);
                     $("#phone").val(data.player_phone);
                     $("#birthday").val(data.player_birthday);
+                    $("#hiddenId").val(data.player_id);
                 }
             }
         })
     }
     $("#editBtn").on("click", function(){
-        let id = playerId;
-        let nickName = $("#nickName").val();
-        let sex = $("input[name='sex']:checked").val();
-        let phone = $("#phone").val();
-        let birthday = $("#birthday").val();
+        var formData = new FormData($("form")[0]);
         $.ajax({
             url:"/servlet/index?method=editPlayer",
             method:"post",
             dataType:"json",
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data:{"id":id,"sex":sex,"nickName":nickName,"phone":phone,"birthday":birthday},
+            contentType: false,
+            processData: false,
+            data:formData,
             success:function(response){
                 if (response.code === 200){
                     data = response.data;

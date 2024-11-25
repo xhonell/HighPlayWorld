@@ -9,15 +9,19 @@
 <body>
 <div id="container">
     <h1>Edit Player Information</h1>
-    <label for="nickName">Player Nickname</label>
-    <input type="text" name="nickName" id="nickName"><br>
-    <label>Player Gender</label>
-    <input type="radio" name="sex" value="Male" checked>Male
-    <input type="radio" name="sex" value="Female">Female<br>
-    <label for="phone">Player Phone</label>
-    <input type="text" name="phone" id="phone"><br>
-    <label for="birthday">Player Birthday</label>
-    <input type="date" name="birthday" id="birthday"><br>
+    <form enctype="multipart/form-data">
+        <input type="hidden" id="hiddenId" name="hiddenId">
+        <label for="nickName">Player Nickname</label>
+        <input type="text" name="nickName" id="nickName"><br>
+        <label>Player Gender</label>
+        <input type="radio" name="sex" value="Male" checked>Male
+        <input type="radio" name="sex" value="Female">Female<br>
+        <label for="phone">Player Phone</label>
+        <input type="text" name="phone" id="phone"><br>
+        <label for="birthday">Player Birthday</label>
+        <input type="date" name="birthday" id="birthday"><br>
+        <input type="file" name="photo" id="photo"><br>
+    </form>
     <button id="editBtn">Update</button>
 </div>
 </body>

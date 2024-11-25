@@ -59,19 +59,23 @@ $(document).ready(function() {
         },
         submitHandler: function() {
             // 当表单验证通过后，使用 AJAX 提交数据
-            var formData = {
-                nickName: $("#nickName").val(),
-                sex: $("input[name='sex']:checked").val(),
-                phone: $("#phone").val(),
-                password: $("#password").val(),
-                birthday: $("#birthday").val()
-            };
+            var formData = new FormData();
+            formData.append("nickName", $("#nickName").val());
+            formData.append("sex",$("input[name='sex']:checked").val());
+            formData.append("phone", $("#phone").val());
+            formData.append("password", $("#password").val());
+            formData.append("birthday", $("#birthday").val());
 
+            let photoVal = $("#photo")[0].files[0];
+            if (photoVal) {
+                formData.append("photo", photoVal);
+            }
             $.ajax({
                 url: "/servlet/index?method=insertPlayer",
                 method: "POST",
                 dataType: "json",
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                contentType: false,
+                processData: false,
                 data: formData,
                 success: function(response) {
                     if (response.code === 200) {

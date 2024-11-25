@@ -21,13 +21,13 @@ public class IndexDao {
     DBHelper helper = new DBHelper();
     JDBCUtils utils = new JDBCUtils();
     public List<Player> selectAll(Object[] obj) {
-        String sql = "SELECT player_id, player_nickName, player_birthday, player_sex, player_phone FROM player LIMIT ?, 10";
+        String sql = "SELECT player_id, player_nickName, player_birthday, player_sex, player_phone, player_img FROM player LIMIT ?, 10";
         return helper.getBeanList(Player.class, sql,obj);
     }
 
     public List<Player> selectById(Object[] obj) {
         ArrayList<Object> arr = new ArrayList<>();
-        StringBuffer sql = new StringBuffer("select player_id,player_nickName,player_birthday,player_sex,player_phone from player where 1=1");
+        StringBuffer sql = new StringBuffer("select player_id,player_nickName,player_birthday,player_sex,player_phone,player_img from player where 1=1");
         if(obj[0] != null && obj[0] != "") {
             sql.append(" and player_id=?");
             arr.add(obj[0]);
@@ -44,13 +44,21 @@ public class IndexDao {
     }
 
     public int insertPlayer(Object[] obj) {
-        String sql = "insert into player(player_nickName,player_password,player_sex,player_phone,player_birthday) values(?,?,?,?,?)";
+        String sql = "insert into player(player_nickName,player_password,player_sex,player_phone,player_birthday,player_img) values(?,?,?,?,?,?)";
         return utils.update(sql,obj);
     }
 
     public int editPlayer(Object[] obj) {
-        String sql="update player set player_nickName=?,player_sex=?,player_phone=?,player_birthday=? where player_id=?";
-        return utils.update(sql,obj);
+        if (obj.length == 5){
+            String sql="update player set player_nickName=?,player_sex=?,player_phone=?,player_birthday=? where player_id=?";
+            return utils.update(sql,obj);
+        }else if(obj.length == 6){
+            String sql="update player set player_nickName=?,player_sex=?,player_phone=?,player_birthday=?,player_img=? where player_id=?";
+            return utils.update(sql,obj);
+        }else{
+            return 0;
+        }
+
     }
 
     public int deleteById(Integer id) {
