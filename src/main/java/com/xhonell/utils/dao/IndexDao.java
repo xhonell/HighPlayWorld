@@ -4,6 +4,10 @@ import com.xhonell.utils.entity.Player;
 import com.xhonell.utils.utils.DBHelper;
 import com.xhonell.utils.utils.JDBCUtils;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,5 +68,29 @@ public class IndexDao {
     public int deleteById(Integer id) {
         String sql = "delete from player where player_id=?";
         return utils.update(sql,new Object[]{id});
+    }
+
+    public int batchAdd(List<Player> list) {
+        Connection connection = utils.openConnection();
+        int rows = 0;
+        try {
+            connection.setAutoCommit(false);
+            String sql = "insert into player(player_nickName,player_phone,player_birthday,player_sex,player_password) values(?,?,?,?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            for (Player player : list) {
+                preparedStatement.setString(1, player.getPlayer_nickName());
+                preparedStatement.setLong(2, player.getPlayer_phone());
+                preparedStatement.setDate(3, new java.sql.Date(player.getPlayer_birthday().getTime()));
+                preparedStatement.setString(4, player.getPlayer_sex());
+                preparedStatement.setString(5, player.getPlayer_password());
+                rows += preparedStatement.executeUpdate();
+                connection.commit();
+                connection.close();
+                return rows;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rows;
     }
 }

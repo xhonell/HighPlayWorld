@@ -87,19 +87,19 @@ public class MyFormatUtils {
      * @return
      * @throws ParseException
      */
-    public static String toString(Date date) throws ParseException {
+    public static String toString(Date date) {
         return toString(date, PATTERN_DATE);
     }
 
-    public static String toString(LocalDate date) throws ParseException {
+    public static String toString(LocalDate date){
         return toString(date, PATTERN_DATE);
     }
 
-    public static String toString(Date date, String pattern) throws ParseException {
+    public static String toString(Date date, String pattern){
         return new SimpleDateFormat(pattern).format(date);
     }
 
-    public static String toString(LocalDate date, String pattern) throws ParseException {
+    public static String toString(LocalDate date, String pattern) {
         return date.format(DateTimeFormatter.ofPattern(pattern));
     }
     //LocalDateTime  ->  Date

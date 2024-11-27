@@ -36,5 +36,9 @@ public class IndexService {
     public boolean deleteById(Integer id) {
         return dao.deleteById(id)>0;
     }
+
+    public  boolean batchAdd(List<Player> list) {
+        return dao.batchAdd(list)>=list.size();
+    }
 }
 

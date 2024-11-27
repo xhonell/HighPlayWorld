@@ -55,9 +55,14 @@
             </tbody>
         </table>
         <div id="footer">
-            <button id="lastPage">Previous Page</button>
+            <form enctype="multipart/form-data" method="post" id="formUpload">
+                <input type="file" id="fileUploadPer" name="fileUploadPer">
+            </form>
+            <button id="uploadPer">导入信息</button>
+            <button id="downloadPer">导出信息</button>
+            <button id="lastPage">上一页</button>
             <input type="text" name="pageNumber" id="pageNumber" value="1" readonly>
-            <button id="afterPage">Next Page</button>
+            <button id="afterPage">下一页</button>
         </div>
     </div>
 </div>

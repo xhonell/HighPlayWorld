@@ -41,8 +41,12 @@ public class LoginServlet extends HttpServlet {
                 break;
             case "loginOut":
                 loginOut(req,resp);
-
+            case "forgetPassword":
+                forgetPassword(req,resp);
         }
+    }
+
+    private void forgetPassword(HttpServletRequest req, HttpServletResponse resp) {
     }
 
     private void loginOut(HttpServletRequest req, HttpServletResponse resp) {
