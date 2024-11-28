@@ -1,4 +1,4 @@
-package com.xhonell.utils.utils;
+package com.xhonell.utils;
 
 import java.sql.*;
 import java.util.ArrayList;

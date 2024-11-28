@@ -1,4 +1,4 @@
-package com.xhonell.utils.filter;
+package com.xhonell.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

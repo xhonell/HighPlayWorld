@@ -1,7 +1,7 @@
-package com.xhonell.utils.service;
+package com.xhonell.service;
 
-import com.xhonell.utils.dao.IndexDao;
-import com.xhonell.utils.entity.Player;
+import com.xhonell.dao.IndexDao;
+import com.xhonell.entity.Player;
 
 import java.util.List;
 

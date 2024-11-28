@@ -1,4 +1,4 @@
-package com.xhonell.utils.entity;
+package com.xhonell.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.AllArgsConstructor;

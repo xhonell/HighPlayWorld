@@ -1,11 +1,10 @@
-package com.xhonell.utils.dao;
+package com.xhonell.dao;
 
-import com.xhonell.utils.entity.Player;
-import com.xhonell.utils.utils.DBHelper;
-import com.xhonell.utils.utils.JDBCUtils;
+import com.xhonell.entity.Player;
+import com.xhonell.utils.DBHelper;
+import com.xhonell.utils.JDBCUtils;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;

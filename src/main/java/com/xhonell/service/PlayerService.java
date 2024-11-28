@@ -1,8 +1,8 @@
-package com.xhonell.utils.service;
+package com.xhonell.service;
 
 
-import com.xhonell.utils.dao.PlayerLoginDao;
-import com.xhonell.utils.entity.Player;
+import com.xhonell.dao.PlayerLoginDao;
+import com.xhonell.entity.Player;
 
 /**
  * <p>Project:test_01 - PlayerService
@@ -18,5 +18,14 @@ public class PlayerService {
     PlayerLoginDao login = new PlayerLoginDao();
     public Player login(Object[] obj) {
         return login.check(obj);
+    }
+
+    public Player forgetPassword(String email) {
+        Object[] obj = {email};
+        return login.selectByEmail(obj);
+    }
+
+    public boolean resetPassword(Object[] obj) {
+        return login.resetPassword(obj) >0;
     }
 }

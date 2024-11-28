@@ -1,4 +1,4 @@
-package com.xhonell.utils.utils;
+package com.xhonell.utils;
 
 /**
  * day4.w1.StringUtils

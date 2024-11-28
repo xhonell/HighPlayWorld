@@ -61,3 +61,7 @@ button:hover {
 #getVerificationCode:hover {
     background-color: #eea236;
 }
+.error{
+    color:red;
+    margin:0;
+}

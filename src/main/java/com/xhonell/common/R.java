@@ -1,4 +1,4 @@
-package com.xhonell.utils.common;
+package com.xhonell.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

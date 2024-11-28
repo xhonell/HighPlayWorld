@@ -1,10 +1,11 @@
-package com.xhonell.utils.servlet;
+package com.xhonell.servlet;
 
 import com.alibaba.fastjson.JSON;
-import com.xhonell.utils.common.R;
-import com.xhonell.utils.common.Write;
-import com.xhonell.utils.entity.Player;
-import com.xhonell.utils.service.PlayerService;
+import com.xhonell.common.R;
+import com.xhonell.common.Write;
+import com.xhonell.entity.Player;
+import com.xhonell.service.PlayerService;
+import com.xhonell.utils.EmailUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Random;
 
-import static com.xhonell.utils.utils.MD5Utils.md5;
+import static com.xhonell.utils.MD5Utils.md5;
 
 /**
  * <p>Project:test_01 - LoginServlet
@@ -28,6 +29,8 @@ import static com.xhonell.utils.utils.MD5Utils.md5;
  */
 @WebServlet("/servlet/login/*")
 public class LoginServlet extends HttpServlet {
+    PlayerService playerService = new PlayerService();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
@@ -41,12 +44,49 @@ public class LoginServlet extends HttpServlet {
                 break;
             case "loginOut":
                 loginOut(req,resp);
+                break;
             case "forgetPassword":
                 forgetPassword(req,resp);
+                break;
+            case "resetPassword":
+                resetPassword(req,resp);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void resetPassword(HttpServletRequest req, HttpServletResponse resp) {
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String code = req.getParameter("validateCode");
+        Object codeSession = req.getSession().getAttribute("code");
+        if (!codeSession.equals(code)){
+            Write.writeFail(resp,"验证码错误");
+        }
+        password = md5(password);
+        Object [] obj={password,email};
+        boolean b = playerService.resetPassword(obj);
+        if(b){
+            Write.writeSuccess(resp);
+        }else{
+            Write.writeFail(resp);
         }
     }
 
     private void forgetPassword(HttpServletRequest req, HttpServletResponse resp) {
+        String email = req.getParameter("email");
+        Player playerByEmail = playerService.forgetPassword(email);
+        if (playerByEmail != null) {
+            Random random = new Random();
+            Integer randomNumber = 100000 + random.nextInt(900000);
+            req.getSession().setAttribute("randomNumber", randomNumber);
+            EmailUtils.sendAuthCodeEmail(email,"犇腾文化有限公司",randomNumber.toString());
+            req.getSession().setAttribute("code", randomNumber.toString());
+            Write.writeSuccess(resp);
+        }else{
+            Write.writeFail(resp);
+        }
     }
 
     private void loginOut(HttpServletRequest req, HttpServletResponse resp) {
@@ -59,7 +99,6 @@ public class LoginServlet extends HttpServlet {
         String playPassword = req.getParameter("password");
         playPassword = md5(playPassword);
         Object[] obj = {playerName, playPassword};
-        PlayerService playerService = new PlayerService();
         Player player = playerService.login(obj);
         if (player != null){
             req.getSession().setAttribute("player", player);
