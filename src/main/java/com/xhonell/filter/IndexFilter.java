@@ -16,7 +16,7 @@ import java.io.IOException;
  * @version 1.0
  * @since 1.8
  */
-@WebFilter({"/page/*", "/servlet/index/*"})
+//@WebFilter({"/page/*", "/servlet/index/*"})
 public class IndexFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

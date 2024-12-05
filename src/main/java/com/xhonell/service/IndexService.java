@@ -2,6 +2,7 @@ package com.xhonell.service;
 
 import com.xhonell.dao.IndexDao;
 import com.xhonell.entity.Player;
+import com.xhonell.entity.Sex;
 
 import java.util.List;
 
@@ -39,6 +40,20 @@ public class IndexService {
 
     public  boolean batchAdd(List<Player> list) {
         return dao.batchAdd(list)>=list.size();
+    }
+
+    public List<Sex> echarts() {
+        List<Sex> echarts = dao.echarts();
+       /* List<Object[]> list = new ArrayList<>();
+        String[] sexName = new String[echarts.size()];
+        Object[] sexs = new Object[echarts.size()];
+        for (int i = 0; i < echarts.size(); i++) {
+            sexName[i]=echarts.get(i).getPlayer_sex();
+            sexs[i]=echarts.get(i).getCount();
+        }
+        list.add(sexs);
+        list.add(sexName);*/
+        return echarts;
     }
 }
 

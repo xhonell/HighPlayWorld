@@ -32,6 +32,11 @@ public class LoginServlet extends HttpServlet {
     PlayerService playerService = new PlayerService();
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getParameter("method");
         if (method==null || (method.trim()).isEmpty()){

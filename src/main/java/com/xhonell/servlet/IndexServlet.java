@@ -2,9 +2,11 @@ package com.xhonell.servlet;
 
 import com.xhonell.common.Write;
 import com.xhonell.entity.Player;
+import com.xhonell.entity.Sex;
 import com.xhonell.service.IndexService;
 import com.xhonell.utils.FileUtils;
 import com.xhonell.utils.MyFormatUtils;
+import com.xhonell.utils.WebParameterUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -94,7 +96,7 @@ public class IndexServlet extends HttpServlet {
 
 
     private void editPlayer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer id = Integer.parseInt(req.getParameter("hiddenId"));
+        /*Integer id = Integer.parseInt(req.getParameter("hiddenId"));
         String name = req.getParameter("nickName");
         String sex = req.getParameter("sex");
         Long phone = Long.parseLong(req.getParameter("phone"));
@@ -106,9 +108,9 @@ public class IndexServlet extends HttpServlet {
 
             String suffix = FileUtils.getSuffix(submittedFileName);
             String newName = UUID.randomUUID().toString().replace("-", "") + suffix;
-            /*获取相对路径*/
+            *//*获取相对路径*//*
             String relativePath = "/img/" + newName;
-            /*获取绝对路径*/
+            *//*获取绝对路径*//*
             String realPath = req.getServletContext().getRealPath("");
             String absolutePath = realPath + relativePath;
             System.out.println(absolutePath);
@@ -117,9 +119,10 @@ public class IndexServlet extends HttpServlet {
 
         } else {
             obj = new Object[]{name, sex, phone, birthday, id};
-        }
+        }*/
 
-
+        Player player = WebParameterUtils.receiveJsonToPojo(req, Player.class);
+        Object[] obj = {player.getPlayer_nickName(), player.getPlayer_sex(), player.getPlayer_phone(),player.getPlayer_birthday(),player.getPlayer_id()};
         boolean b = indexService.editPlayer(obj);
         if (b) {
             Write.writeSuccess(resp);
@@ -129,26 +132,28 @@ public class IndexServlet extends HttpServlet {
     }
 
     private void insertPlayer(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("nickName");
+        /*String name = req.getParameter("nickName");
         String password = req.getParameter("password");
         password = md5(password);
         String sex = req.getParameter("sex");
         Long phone = Long.parseLong(req.getParameter("phone"));
         Date birthday = MyFormatUtils.toDate(req.getParameter("birthday"));
         Part part = req.getPart("photo");
-        /*获取文件名称和路径*/
+        *//*获取文件名称和路径*//*
         String submittedFileName = part.getSubmittedFileName();
         String suffix = FileUtils.getSuffix(submittedFileName);
         String realPath = req.getServletContext().getRealPath("");
         String newName = (UUID.randomUUID().toString().replace("-", "")) + suffix;
-        /*相对路径*/
+        *//*相对路径*//*
         String relativePath = "/img/" + newName;
 
-        /*绝对路径*/
+        *//*绝对路径*//*
         String absolutePath = realPath + relativePath;
         System.out.println(absolutePath);
-        part.write(absolutePath);
-        Object[] obj = {name, password, sex, phone, birthday, relativePath};
+        part.write(absolutePath);*/
+        Player player = WebParameterUtils.receiveJsonToPojo(req, Player.class);
+        /*Object[] obj = {name, password, sex, phone, birthday, relativePath};*/
+        Object[] obj = {player.getPlayer_nickName(), player.getPlayer_password(), player.getPlayer_phone()};
         boolean b = indexService.insertPlayer(obj);
         if (b) {
             Write.writeSuccess(resp);
@@ -174,9 +179,17 @@ public class IndexServlet extends HttpServlet {
             case "downloadPer":
                 downloadPer(req, resp);
                 break;
+            case "echarts":
+                echarts(req, resp);
+                break;
             default:
                 break;
         }
+    }
+
+    private void echarts(HttpServletRequest req, HttpServletResponse resp) {
+        List<Sex> echarts = indexService.echarts();
+        Write.writeSuccess(resp, echarts);
     }
 
     /**
@@ -214,10 +227,11 @@ public class IndexServlet extends HttpServlet {
     }
 
     private void deleteById(HttpServletRequest req, HttpServletResponse resp) {
-        Integer id = Integer.parseInt(req.getParameter("id"));
+      Integer id = Integer.parseInt(req.getParameter("player_id"));
+//        Player id = WebParameterUtils.receiveJsonToPojo(req, Player.class);
         boolean b = indexService.deleteById(id);
         if (b) {
-            Write.writeSuccess(resp);
+            Write.writeSuccess(resp);   
         } else {
             Write.writeFail(resp);
         }
@@ -236,10 +250,9 @@ public class IndexServlet extends HttpServlet {
     }
 
     private void selectAll(HttpServletRequest req, HttpServletResponse resp) {
-        Object[] obj = {(Integer.parseInt(req.getParameter("pageNumber")) - 1) * 10};
-        List<Player> players = indexService.selectAll(obj);
+
+//        Object[] obj = {(Integer.parseInt(req.getParameter("pageNumber")) - 1) * 10};
+        List<Player> players = indexService.selectAll( new Object[]{1});
         Write.writeSuccess(resp, players);
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.xhonell.dao;
 
 import com.xhonell.entity.Player;
+import com.xhonell.entity.Sex;
 import com.xhonell.utils.DBHelper;
 import com.xhonell.utils.JDBCUtils;
 
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -47,7 +49,7 @@ public class IndexDao {
     }
 
     public int insertPlayer(Object[] obj) {
-        String sql = "insert into player(player_nickName,player_password,player_sex,player_phone,player_birthday,player_img) values(?,?,?,?,?,?)";
+        String sql = "insert into player(player_nickName,player_password,player_phone) values(?,?,?)";
         return utils.update(sql,obj);
     }
 
@@ -91,5 +93,11 @@ public class IndexDao {
             throw new RuntimeException(e);
         }
         return rows;
+    }
+
+    public List<Sex> echarts() {
+        String sql = "select  player_sex as name ,count(*) as count from player GROUP BY player_sex";
+        List<Sex> beanList = helper.getBeanList(Sex.class, sql);
+        return beanList;
     }
 }
